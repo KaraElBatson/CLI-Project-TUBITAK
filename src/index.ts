@@ -53,21 +53,95 @@ interface LocaleData {
 // Varsayılan dil
 let currentLocale: LocaleData;
 
+// Gömülü varsayılan Türkçe çeviriler (fallback için)
+const DEFAULT_LOCALE_TR: LocaleData = {
+  app: {
+    name: "Gemini CLI Türkçe",
+    version: "0.1.0",
+    description: "Türkçe lokalizasyonlu Gemini CLI arayüzü"
+  },
+  messages: {
+    welcome: "Gemini CLI Türkçe'ye hoş geldiniz!",
+    loading: "Yükleniyor...",
+    processing: "İşleniyor...",
+    completed: "Tamamlandı!",
+    cancelled: "İptal edildi",
+    success: "Başarılı!"
+  },
+  errors: {
+    api_key_missing: "HATA: Gemini API anahtarı bulunamadı. Lütfen GEMINI_API_KEY ortam değişkenini ayarlayın.",
+    connection_failed: "Bağlantı hatası: Gemini API'ye bağlanılamadı.",
+    file_not_found: "Dosya bulunamadı: {file}",
+    invalid_command: "Geçersiz komut: {command}",
+    permission_denied: "İzin reddedildi: {action}",
+    rate_limit: "İstek limiti aşıldı. Lütfen bir süre bekleyin.",
+    unknown_error: "Bilinmeyen bir hata oluştu: {error}"
+  },
+  help: {
+    usage: "Kullanım",
+    commands: "Komutlar",
+    options: "Seçenekler",
+    examples: "Örnekler",
+    description: {
+      chat: "Gemini ile sohbet başlatır",
+      explain: "Kod veya metin açıklaması yapar",
+      summarize: "Dosya veya metin özetler",
+      translate: "Türkçe → İngilizce akademik çeviri",
+      report: "Notlardan rapor taslağı oluşturur"
+    }
+  }
+};
+
+/**
+ * Olası locale dosya yollarını döndürür
+ * Hem development hem production ortamlarını destekler
+ */
+function getLocalePaths(lang: string): string[] {
+  return [
+    // Production: dist/locales/ (npm paketi olarak)
+    join(__dirname, 'locales', `${lang}.json`),
+    // Development: src/locales/ (proje kökünden)
+    join(__dirname, '..', 'src', 'locales', `${lang}.json`),
+    // Alternative: locales/ (proje kökünde)
+    join(__dirname, '..', 'locales', `${lang}.json`),
+  ];
+}
+
 /**
  * Dil dosyasını yükler
+ * Birden fazla olası konumu dener ve bulamazsa gömülü varsayılana döner
  */
 function loadLocale(lang: string = 'tr'): LocaleData {
-  try {
-    const localePath = join(__dirname, '..', 'src', 'locales', `${lang}.json`);
-    const content = readFileSync(localePath, 'utf-8');
-    return JSON.parse(content) as LocaleData;
-  } catch {
-    console.error(chalk.yellow(`Uyarı: ${lang}.json yüklenemedi, varsayılan dil kullanılıyor.`));
-    // Fallback olarak tr.json'u dene
-    const fallbackPath = join(__dirname, '..', 'src', 'locales', 'tr.json');
-    const content = readFileSync(fallbackPath, 'utf-8');
-    return JSON.parse(content) as LocaleData;
+  const paths = getLocalePaths(lang);
+  
+  // Tüm olası yolları dene
+  for (const localePath of paths) {
+    try {
+      const content = readFileSync(localePath, 'utf-8');
+      return JSON.parse(content) as LocaleData;
+    } catch {
+      // Bu yolda dosya yok, sonrakini dene
+      continue;
+    }
   }
+  
+  // İstenen dil bulunamadı, Türkçe'yi dene (eğer farklı bir dil istendiyse)
+  if (lang !== 'tr') {
+    console.error(chalk.yellow(`Uyarı: ${lang}.json yüklenemedi, Türkçe kullanılıyor.`));
+    const trPaths = getLocalePaths('tr');
+    for (const localePath of trPaths) {
+      try {
+        const content = readFileSync(localePath, 'utf-8');
+        return JSON.parse(content) as LocaleData;
+      } catch {
+        continue;
+      }
+    }
+  }
+  
+  // Hiçbir dosya bulunamadı, gömülü varsayılanı kullan
+  console.error(chalk.yellow('Uyarı: Dil dosyaları bulunamadı, gömülü varsayılan kullanılıyor.'));
+  return DEFAULT_LOCALE_TR;
 }
 
 /**

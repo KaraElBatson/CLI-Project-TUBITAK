@@ -8,11 +8,12 @@
     "gemini-tr": "./dist/index.js"
   },
   "scripts": {
-    "build": "tsc",
+    "build": "tsc && npm run copy-locales",
+    "copy-locales": "node -e \"const fs=require('fs');const path=require('path');const src='src/locales';const dest='dist/locales';if(!fs.existsSync(dest))fs.mkdirSync(dest,{recursive:true});fs.readdirSync(src).forEach(f=>fs.copyFileSync(path.join(src,f),path.join(dest,f)));console.log('Locales copied to dist/')\"",
     "dev": "tsc --watch",
     "start": "node dist/index.js",
     "test": "echo \"Tests will be added in Phase 5\" && exit 0",
-    "clean": "rm -rf dist"
+    "clean": "node -e \"const fs=require('fs');if(fs.existsSync('dist'))fs.rmSync('dist',{recursive:true});console.log('dist/ cleaned')\""
   },
   "keywords": [
     "gemini",
@@ -49,5 +50,9 @@
   },
   "bugs": {
     "url": "https://github.com/KaraElBatson/CLI-Project-TUBITAK/issues"
-  }
+  },
+  "files": [
+    "dist/**/*",
+    "README.md"
+  ]
 }
