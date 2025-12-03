@@ -71,9 +71,37 @@ npm run build
 
 ### Adım 4: API Anahtarını Ayarlayın
 
+**Önemli:** Gemini CLI Türkçe'yi kullanmak için Google Gemini API anahtarına ihtiyacınız var.
+
+#### Hızlı Kurulum (.env dosyası - Önerilen):
+
+```bash
+# .env.example dosyasını kopyalayın
+cp .env.example .env
+
+# .env dosyasını düzenleyin ve API anahtarınızı ekleyin
+# GEMINI_API_KEY=your-api-key-here
+```
+
+#### Alternatif: Sistem Ortam Değişkeni
+
+**Windows (PowerShell):**
+```powershell
+$env:GEMINI_API_KEY="your-api-key-here"
+```
+
+**Linux/Mac:**
 ```bash
 export GEMINI_API_KEY="your-api-key-here"
 ```
+
+> 📘 **Detaylı API Anahtarı Kurulum Rehberi:** [docs/API-ANAHTARI-KURULUMU.md](./docs/API-ANAHTARI-KURULUMU.md)
+>
+> Bu rehber şunları içerir:
+> - Google AI Studio'dan API anahtarı alma
+> - Windows, Linux ve Mac için kurulum
+> - Kalıcı ortam değişkeni ayarlama
+> - Sorun giderme
 
 ### Adım 5: Uygulamayı Başlatın
 
