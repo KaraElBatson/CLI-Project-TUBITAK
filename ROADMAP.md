@@ -77,42 +77,63 @@ Türkçe konuşan geliştiriciler için Gemini CLI'yı erişilebilir ve zenginle
 ## 🌐 Faz 2: Türkçe Arayüz & Yapılandırma (Hafta 2-2.5)
 
 **Süre:** 1-1.5 Hafta
-**Durum:** ⏳ Bekliyor
-**Tahmini Başlangıç:** Hafta 2
+**Durum:** 🔄 Devam Ediyor (40% Tamamlandı)
+**Başlangıç:** Aralık 2025
 
 ### Hedefler
 
-- [ ] `config.json` içinde dil seçimi yapısı
-- [ ] Yardım metinlerinin Türkçe versiyonları
-- [ ] Hata mesajlarının lokalizasyonu
-- [ ] `--lang tr` parametresi implementasyonu
-- [ ] Dil değiştirme mekanizması
+- [x] `config.json` içinde dil seçimi yapısı
+- [x] Yardım metinlerinin Türkçe versiyonları
+- [x] Hata mesajlarının lokalizasyonu
+- [x] `--lang tr` parametresi implementasyonu
+- [x] Dil değiştirme mekanizması
+- [x] .env dosyası desteği (dotenv)
+- [x] GEMINI.md context dosyası
+- [x] Kullanım örnekleri dokümantasyonu
 
-### Planlanan Çıktılar
+### Tamamlanan Çıktılar
 
-| Çıktı | Öncelik | Açıklama |
-|-------|---------|----------|
-| `src/locales/tr.json` | Yüksek | Türkçe çeviri dosyası |
-| `src/locales/en.json` | Orta | İngilizce referans dosyası |
-| `config.json` | Yüksek | Dil yapılandırması |
-| Lokalizasyon modülü | Yüksek | Çeviri yükleme sistemi |
+| Çıktı | Durum | Dosya |
+|-------|-------|-------|
+| Türkçe çeviri dosyası | ✅ Tamamlandı | `src/locales/tr.json` |
+| İngilizce referans dosyası | ✅ Tamamlandı | `src/locales/en.json` |
+| Dil yapılandırması | ✅ Tamamlandı | `.gemini/settings.json` |
+| Lokalizasyon sistemi | ✅ Tamamlandı | `src/index.ts` (loadLocale) |
+| .env desteği | ✅ Tamamlandı | dotenv entegrasyonu |
+| GEMINI.md context | ✅ Tamamlandı | `GEMINI.md` |
+| Kullanım örnekleri | ✅ Tamamlandı | `docs/examples/KULLANIM-ORNEKLERI.md` |
+| API key kurulum rehberi | ✅ Tamamlandı | `docs/API-ANAHTARI-KURULUMU.md` |
 
 ### Görevler
 
-1. ⏳ Tüm kullanıcı mesajlarını kataloglama
-2. ⏳ Türkçe çevirileri hazırlama
-3. ⏳ i18n (internationalization) sistemini kurma
-4. ⏳ Dil değiştirme fonksiyonlarını implementasyon
-5. ⏳ Yardım komutlarını Türkçeleştirme
-6. ⏳ Hata mesajlarını Türkçeleştirme
-7. ⏳ Test senaryoları oluşturma
+#### Tamamlananlar ✅
+
+1. ✅ Tüm kullanıcı mesajlarını kataloglama
+2. ✅ Türkçe çevirileri hazırlama
+3. ✅ i18n (internationalization) sistemini kurma
+4. ✅ Dil değiştirme fonksiyonlarını implementasyon
+5. ✅ Yardım komutlarını Türkçeleştirme
+6. ✅ Hata mesajlarını Türkçeleştirme
+7. ✅ .env dosyası desteği ekleme
+8. ✅ GEMINI.md context dosyası oluşturma
+9. ✅ Kullanım örnekleri dokümantasyonu
+
+#### Devam Edenler 🔄
+
+10. 🔄 Slash komut entegrasyonu
+
+#### Bekleyenler ⏳
+
+11. ⏳ Test senaryoları oluşturma
 
 ### Başarı Kriterleri
 
-- [ ] Tüm UI elementleri Türkçe gösterilebiliyor
-- [ ] `--lang tr` ile Türkçe, `--lang en` ile İngilizce çalışıyor
-- [ ] Hata mesajları anlaşılır Türkçe ile gösteriliyor
-- [ ] Yardım komutları tam Türkçe
+- [x] Tüm UI elementleri Türkçe gösterilebiliyor
+- [x] `--lang tr` ile Türkçe, `--lang en` ile İngilizce çalışıyor
+- [x] Hata mesajları anlaşılır Türkçe ile gösteriliyor
+- [x] Yardım komutları tam Türkçe
+- [x] .env dosyası ile API anahtarı yükleniyor
+- [ ] Slash komutlar çalışıyor
 
 ---
 
@@ -295,12 +316,12 @@ Türkçe konuşan geliştiriciler için Gemini CLI'yı erişilebilir ve zenginle
 
 ```
 Faz 1: Analiz & Kurulum          [██████████] 100% ✅
-Faz 2: Türkçe Arayüz             [░░░░░░░░░░]   0%
-Faz 3: Slash Komutlar            [░░░░░░░░░░]   0%
+Faz 2: Türkçe Arayüz             [████░░░░░░]  40% 🔄
+Faz 3: Slash Komutlar            [██░░░░░░░░]  20% (TOML dosyaları hazır)
 Faz 4: React Ink UI              [░░░░░░░░░░]   0%
-Faz 5: Test & Dokümantasyon      [░░░░░░░░░░]   0%
+Faz 5: Test & Dokümantasyon      [██░░░░░░░░]  20% (Örnekler hazır)
 ────────────────────────────────────────────
-TOPLAM İLERLEME                  [██░░░░░░░░]  20%
+TOPLAM İLERLEME                  [████░░░░░░]  36%
 ```
 
 ### Kilometre Taşları
@@ -308,7 +329,7 @@ TOPLAM İLERLEME                  [██░░░░░░░░]  20%
 | Taş | Açıklama | Hedef Tarih | Durum |
 |-----|----------|-------------|-------|
 | M1 | Proje kurulumu tamamlandı | Hafta 1 Sonu | ✅ Tamamlandı |
-| M2 | Türkçe lokalizasyon çalışıyor | Hafta 2.5 Sonu | ⏳ Bekliyor |
+| M2 | Türkçe lokalizasyon çalışıyor | Hafta 2.5 Sonu | 🔄 Devam Ediyor (40%) |
 | M3 | İlk 5 slash komutu çalışıyor | Hafta 4 Sonu | ⏳ Bekliyor |
 | M4 | React Ink UI entegre | Hafta 5 Sonu | ⏳ Bekliyor |
 | M5 | Proje teslime hazır | Hafta 6 Sonu | ⏳ Bekliyor |

@@ -3,15 +3,19 @@
 /**
  * Gemini CLI Türkçe
  * Türkçe lokalizasyonlu Gemini CLI wrapper
- * 
+ *
  * @author Kara El
  * @version 0.1.0
  */
 
+import { config as loadEnv } from 'dotenv';
 import { readFileSync } from 'fs';
 import { fileURLToPath } from 'url';
 import { dirname, join } from 'path';
 import chalk from 'chalk';
+
+// .env dosyasını yükle
+loadEnv();
 
 // ES Module için __dirname alternatifi
 const __filename = fileURLToPath(import.meta.url);

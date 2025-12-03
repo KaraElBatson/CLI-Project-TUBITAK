@@ -1,0 +1,33 @@
+{
+  "general": {
+    "vimMode": false,
+    "preferredEditor": "code"
+  },
+  "ui": {
+    "theme": "GitHub",
+    "hideBanner": false,
+    "showLineNumbers": true
+  },
+  "model": {
+    "name": "gemini-2.5-pro",
+    "temperature": 0.7,
+    "maxTokens": 2048
+  },
+  "tools": {
+    "sandbox": false,
+    "autoAccept": false,
+    "allowed": [
+      "run_shell_command(git)",
+      "run_shell_command(npm)",
+      "run_shell_command(node)"
+    ]
+  },
+  "context": {
+    "fileName": "GEMINI.md"
+  },
+  "localization": {
+    "defaultLanguage": "tr",
+    "fallbackLanguage": "en",
+    "supportedLanguages": ["tr", "en"]
+  }
+}
