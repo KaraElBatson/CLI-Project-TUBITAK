@@ -1,0 +1,27 @@
+{
+  "language": "tr",
+  "theme": "GitHub",
+  "model": {
+    "name": "gemini-2.5-pro",
+    "temperature": 0.7,
+    "maxTokens": 2048
+  },
+  "ui": {
+    "showLineNumbers": true,
+    "hideBanner": false,
+    "vimMode": false,
+    "preferredEditor": "code"
+  },
+  "localization": {
+    "defaultLanguage": "tr",
+    "fallbackLanguage": "en",
+    "supportedLanguages": ["tr", "en"]
+  },
+  "commands": {
+    "namespace": {
+      "akademik": "Akademik komutlar",
+      "kod": "Kod ile ilgili komutlar",
+      "genel": "Genel komutlar"
+    }
+  }
+}

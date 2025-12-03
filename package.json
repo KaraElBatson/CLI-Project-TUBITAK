@@ -1,12 +1,53 @@
 {
-  "name": "cli-project-tubitak",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+  "name": "gemini-cli-turkce",
+  "version": "0.1.0",
+  "description": "Türkçe lokalizasyonlu Gemini CLI - Turkish-localized Gemini CLI wrapper with enhanced features",
+  "type": "module",
+  "main": "dist/index.js",
+  "bin": {
+    "gemini-tr": "./dist/index.js"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC"
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc --watch",
+    "start": "node dist/index.js",
+    "test": "echo \"Tests will be added in Phase 5\" && exit 0",
+    "clean": "rm -rf dist"
+  },
+  "keywords": [
+    "gemini",
+    "cli",
+    "turkish",
+    "ai",
+    "gemini-cli",
+    "localization",
+    "i18n",
+    "türkçe"
+  ],
+  "author": "Kara El",
+  "license": "MIT",
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.0.0",
+    "ink": "^4.4.1",
+    "react": "^18.2.0",
+    "zod": "^3.22.0",
+    "chalk": "^5.3.0",
+    "commander": "^11.1.0",
+    "inquirer": "^9.2.12"
+  },
+  "devDependencies": {
+    "@types/node": "^20.10.0",
+    "@types/react": "^18.2.45",
+    "typescript": "^5.3.3"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/KaraElBatson/CLI-Project-TUBITAK.git"
+  },
+  "bugs": {
+    "url": "https://github.com/KaraElBatson/CLI-Project-TUBITAK/issues"
+  }
 }

@@ -1,0 +1,98 @@
+{
+  "app": {
+    "name": "Gemini CLI Turkish",
+    "version": "0.1.0",
+    "description": "Turkish-localized Gemini CLI interface"
+  },
+  "menu": {
+    "title": "Main Menu",
+    "chat": "Start Chat",
+    "explain_code": "Explain Code",
+    "summarize": "Summarize",
+    "settings": "Settings",
+    "exit": "Exit"
+  },
+  "prompts": {
+    "enter_prompt": "Enter your message",
+    "enter_file": "Enter file path",
+    "select_option": "Select an option",
+    "confirm": "Do you confirm?",
+    "language_select": "Select language (TR/EN)"
+  },
+  "messages": {
+    "welcome": "Welcome to Gemini CLI Turkish!",
+    "loading": "Loading...",
+    "processing": "Processing...",
+    "completed": "Completed!",
+    "cancelled": "Cancelled",
+    "success": "Success!"
+  },
+  "errors": {
+    "api_key_missing": "ERROR: Gemini API key not found. Please set GEMINI_API_KEY environment variable.",
+    "connection_failed": "Connection error: Could not connect to Gemini API.",
+    "file_not_found": "File not found: {file}",
+    "invalid_command": "Invalid command: {command}",
+    "permission_denied": "Permission denied: {action}",
+    "rate_limit": "Rate limit exceeded. Please wait a moment.",
+    "unknown_error": "An unknown error occurred: {error}"
+  },
+  "help": {
+    "usage": "Usage",
+    "commands": "Commands",
+    "options": "Options",
+    "examples": "Examples",
+    "description": {
+      "chat": "Start chat with Gemini",
+      "explain": "Explain code or text",
+      "summarize": "Summarize file or text",
+      "translate": "Turkish → Academic English translation",
+      "report": "Generate report draft from notes"
+    }
+  },
+  "commands": {
+    "ozetle": {
+      "name": "Summarize",
+      "description": "Extract Turkish summary from file or text",
+      "prompt": "Enter text or file path to summarize"
+    },
+    "acikla_baslangic": {
+      "name": "Beginner Explanation",
+      "description": "Explain technical topics for beginners in Turkish",
+      "prompt": "Enter topic to explain"
+    },
+    "kod_acikla_tr": {
+      "name": "Explain Code (Turkish)",
+      "description": "Explain code line by line in Turkish",
+      "prompt": "Enter path to code file"
+    },
+    "rapor_taslagi": {
+      "name": "Report Draft",
+      "description": "Generate project report or assignment draft from notes",
+      "prompt": "Enter path to notes file"
+    },
+    "ing_ceviri_akademik": {
+      "name": "Academic English Translation",
+      "description": "Translate Turkish text to academic English",
+      "prompt": "Enter Turkish text to translate"
+    }
+  },
+  "settings": {
+    "language": "Language",
+    "theme": "Theme",
+    "api_key": "API Key",
+    "model": "Model",
+    "temperature": "Temperature",
+    "max_tokens": "Max Tokens",
+    "save": "Save",
+    "cancel": "Cancel",
+    "reset": "Reset"
+  },
+  "status": {
+    "idle": "Idle",
+    "thinking": "Thinking...",
+    "typing": "Typing...",
+    "searching": "Searching...",
+    "reading_file": "Reading file...",
+    "generating": "Generating..."
+  }
+}

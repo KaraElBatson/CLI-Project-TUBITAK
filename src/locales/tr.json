@@ -1,0 +1,98 @@
+{
+  "app": {
+    "name": "Gemini CLI Türkçe",
+    "version": "0.1.0",
+    "description": "Türkçe lokalizasyonlu Gemini CLI arayüzü"
+  },
+  "menu": {
+    "title": "Ana Menü",
+    "chat": "Sohbet Başlat",
+    "explain_code": "Kod Açıkla",
+    "summarize": "Özet Çıkar",
+    "settings": "Ayarlar",
+    "exit": "Çıkış"
+  },
+  "prompts": {
+    "enter_prompt": "Mesajınızı girin",
+    "enter_file": "Dosya yolunu girin",
+    "select_option": "Bir seçenek seçin",
+    "confirm": "Onaylıyor musunuz?",
+    "language_select": "Dil seçin (TR/EN)"
+  },
+  "messages": {
+    "welcome": "Gemini CLI Türkçe'ye hoş geldiniz!",
+    "loading": "Yükleniyor...",
+    "processing": "İşleniyor...",
+    "completed": "Tamamlandı!",
+    "cancelled": "İptal edildi",
+    "success": "Başarılı!"
+  },
+  "errors": {
+    "api_key_missing": "HATA: Gemini API anahtarı bulunamadı. Lütfen GEMINI_API_KEY ortam değişkenini ayarlayın.",
+    "connection_failed": "Bağlantı hatası: Gemini API'ye bağlanılamadı.",
+    "file_not_found": "Dosya bulunamadı: {file}",
+    "invalid_command": "Geçersiz komut: {command}",
+    "permission_denied": "İzin reddedildi: {action}",
+    "rate_limit": "İstek limiti aşıldı. Lütfen bir süre bekleyin.",
+    "unknown_error": "Bilinmeyen bir hata oluştu: {error}"
+  },
+  "help": {
+    "usage": "Kullanım",
+    "commands": "Komutlar",
+    "options": "Seçenekler",
+    "examples": "Örnekler",
+    "description": {
+      "chat": "Gemini ile sohbet başlatır",
+      "explain": "Kod veya metin açıklaması yapar",
+      "summarize": "Dosya veya metin özetler",
+      "translate": "Türkçe → İngilizce akademik çeviri",
+      "report": "Notlardan rapor taslağı oluşturur"
+    }
+  },
+  "commands": {
+    "ozetle": {
+      "name": "Özet Çıkar",
+      "description": "Dosya veya metin için Türkçe özet çıkarır",
+      "prompt": "Özet çıkarmak istediğiniz metni veya dosya yolunu girin"
+    },
+    "acikla_baslangic": {
+      "name": "Başlangıç Düzeyi Açıklama",
+      "description": "Teknik konuları başlangıç seviyesinde Türkçe açıklar",
+      "prompt": "Açıklamak istediğiniz konuyu girin"
+    },
+    "kod_acikla_tr": {
+      "name": "Kod Açıkla (Türkçe)",
+      "description": "Verilen kodu satır satır Türkçe açıklar",
+      "prompt": "Açıklanacak kod dosyasının yolunu girin"
+    },
+    "rapor_taslagi": {
+      "name": "Rapor Taslağı",
+      "description": "Notlardan proje raporu veya ödev taslağı oluşturur",
+      "prompt": "Rapor için not dosyasının yolunu girin"
+    },
+    "ing_ceviri_akademik": {
+      "name": "Akademik İngilizce Çeviri",
+      "description": "Türkçe metni akademik İngilizce'ye çevirir",
+      "prompt": "Çevrilecek Türkçe metni girin"
+    }
+  },
+  "settings": {
+    "language": "Dil",
+    "theme": "Tema",
+    "api_key": "API Anahtarı",
+    "model": "Model",
+    "temperature": "Sıcaklık",
+    "max_tokens": "Maksimum Token",
+    "save": "Kaydet",
+    "cancel": "İptal",
+    "reset": "Sıfırla"
+  },
+  "status": {
+    "idle": "Beklemede",
+    "thinking": "Düşünüyor...",
+    "typing": "Yazıyor...",
+    "searching": "Arıyor...",
+    "reading_file": "Dosya okunuyor...",
+    "generating": "Oluşturuluyor..."
+  }
+}
