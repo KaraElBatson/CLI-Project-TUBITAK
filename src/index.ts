@@ -61,12 +61,55 @@ function loadLocale(lang: string = 'tr'): LocaleData {
     const localePath = join(__dirname, '..', 'src', 'locales', `${lang}.json`);
     const content = readFileSync(localePath, 'utf-8');
     return JSON.parse(content) as LocaleData;
-  } catch {
+  } catch (primaryError) {
     console.error(chalk.yellow(`Uyarı: ${lang}.json yüklenemedi, varsayılan dil kullanılıyor.`));
+
     // Fallback olarak tr.json'u dene
-    const fallbackPath = join(__dirname, '..', 'src', 'locales', 'tr.json');
-    const content = readFileSync(fallbackPath, 'utf-8');
-    return JSON.parse(content) as LocaleData;
+    try {
+      const fallbackPath = join(__dirname, '..', 'src', 'locales', 'tr.json');
+      const content = readFileSync(fallbackPath, 'utf-8');
+      return JSON.parse(content) as LocaleData;
+    } catch (fallbackError) {
+      // Son çare: Embedded varsayılan Türkçe çeviriler
+      console.error(chalk.red('HATA: Hiçbir dil dosyası yüklenemedi, embedded varsayılanlar kullanılıyor.'));
+      return {
+        app: {
+          name: 'Gemini CLI Türkçe',
+          version: '0.1.0',
+          description: 'Türkçe lokalizasyonlu Gemini CLI arayüzü'
+        },
+        messages: {
+          welcome: 'Gemini CLI Türkçe\'ye hoş geldiniz!',
+          loading: 'Yükleniyor...',
+          processing: 'İşleniyor...',
+          completed: 'Tamamlandı!',
+          cancelled: 'İptal edildi',
+          success: 'Başarılı!'
+        },
+        errors: {
+          api_key_missing: 'HATA: Gemini API anahtarı bulunamadı. Lütfen GEMINI_API_KEY ortam değişkenini ayarlayın.',
+          connection_failed: 'Bağlantı hatası: Gemini API\'ye bağlanılamadı.',
+          file_not_found: 'Dosya bulunamadı: {file}',
+          invalid_command: 'Geçersiz komut: {command}',
+          permission_denied: 'İzin reddedildi: {action}',
+          rate_limit: 'İstek limiti aşıldı. Lütfen bir süre bekleyin.',
+          unknown_error: 'Bilinmeyen bir hata oluştu: {error}'
+        },
+        help: {
+          usage: 'Kullanım',
+          commands: 'Komutlar',
+          options: 'Seçenekler',
+          examples: 'Örnekler',
+          description: {
+            chat: 'Gemini ile sohbet başlatır',
+            explain: 'Kod veya metin açıklaması yapar',
+            summarize: 'Dosya veya metin özetler',
+            translate: 'Türkçe → İngilizce akademik çeviri',
+            report: 'Notlardan rapor taslağı oluşturur'
+          }
+        }
+      };
+    }
   }
 }
 
@@ -147,33 +190,34 @@ function checkApiKey(): boolean {
 function parseArgs(argv: string[]): { lang: string; args: string[] } {
   const rawArgs = argv.slice(2);
   let lang = 'tr';
-  
-  // Flag'leri filtrele ve dil değerini çıkar
-  const filteredArgs = rawArgs.filter(arg => {
+  const indicesToRemove = new Set<number>();
+
+  // İlk geçiş: --lang flag'lerini ve değerlerini belirle
+  for (let i = 0; i < rawArgs.length; i++) {
+    const arg = rawArgs[i];
+
     // --lang=en veya -l=en formatı
     if (arg.startsWith('--lang=') || arg.startsWith('-l=')) {
       lang = arg.split('=')[1] || 'tr';
-      return false;
+      indicesToRemove.add(i);
+      continue;
     }
-    // --lang en veya -l en formatı için bir sonraki argümanı da kontrol et
+
+    // --lang en veya -l en formatı
     if (arg === '--lang' || arg === '-l') {
-      return false;
-    }
-    return true;
-  });
-  
-  // --lang veya -l'den sonra gelen değeri de kontrol et
-  for (let i = 0; i < rawArgs.length; i++) {
-    if ((rawArgs[i] === '--lang' || rawArgs[i] === '-l') && rawArgs[i + 1] && !rawArgs[i + 1].startsWith('-')) {
-      lang = rawArgs[i + 1];
-      // Bu değeri filteredArgs'dan da çıkar
-      const valueIndex = filteredArgs.indexOf(rawArgs[i + 1]);
-      if (valueIndex > -1) {
-        filteredArgs.splice(valueIndex, 1);
+      indicesToRemove.add(i);
+      // Bir sonraki argümanı kontrol et
+      if (i + 1 < rawArgs.length && !rawArgs[i + 1].startsWith('-')) {
+        lang = rawArgs[i + 1];
+        indicesToRemove.add(i + 1); // Bir sonraki indeksi işaretle
       }
+      continue;
     }
   }
-  
+
+  // İkinci geçiş: İşaretlenen indeksleri hariç tut
+  const filteredArgs = rawArgs.filter((_, index) => !indicesToRemove.has(index));
+
   return { lang, args: filteredArgs };
 }
 
